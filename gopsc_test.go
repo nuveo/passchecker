@@ -4,6 +4,8 @@ import "testing"
 import "fmt"
 
 func TestCheckStrength(t *testing.T) {
-	val := CheckStrength("test")
-	fmt.Printf("%2.9g\n", val)
+	val := CheckStrength("aaaaaa")
+	fmt.Printf("%.9f\n", val)
+	val = CheckStrength("aaaaab")
+	fmt.Printf("%.9f\n", val)
 }
