@@ -121,7 +121,7 @@ func (p *Password) GetStrength(password string) (strength float64) {
 		// penalty for char sequencing
 		if i > 0 {
 			if strings.Contains(p.CharacterSequence, password[0:i]) {
-				charValue = charValue - (charValue / 4.0)
+				charValue -= (charValue / 4.0)
 			}
 		}
 
