@@ -1,11 +1,14 @@
 package gopsc
 
-import "testing"
-import "fmt"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestCheckStrength(t *testing.T) {
-	val := CheckStrength("aaaaaa")
+	p := New()
+	val := p.GetStrength("aaaaaa")
 	fmt.Printf("%.9f\n", val)
-	val = CheckStrength("aaaaab")
+	val = p.GetStrength("aaaaab")
 	fmt.Printf("%.9f\n", val)
 }

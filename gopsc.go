@@ -5,7 +5,8 @@ import (
 )
 
 var (
-	enUS = map[rune]float64{
+	// EnUS map with character strength in enUS
+	EnUS = map[rune]float64{
 		'e': 0.87298,
 		't': 0.90944,
 		'a': 0.91833,
@@ -70,13 +71,38 @@ var (
 		'0': 0.97800,
 	}
 
-	enUSSequence = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+	// EnUSSequence order of characters
+	EnUSSequence = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
 )
 
-// CheckStrength returns a value that represents
+// Password define parameters to determine password strength
+type Password struct {
+	WeightOfCharacters map[rune]float64
+	CharacterSequence  string
+}
+
+// New instanciate a password object
+func New() (r *Password) {
+	r = &Password{
+		WeightOfCharacters: EnUS,
+		CharacterSequence:  EnUSSequence,
+	}
+	return
+}
+
+// NewWithParameters instanciate a password object with parameters
+func NewWithParameters(weightOfCharacters map[rune]float64, characterSequence string) (r *Password) {
+	r = &Password{
+		WeightOfCharacters: weightOfCharacters,
+		CharacterSequence:  characterSequence,
+	}
+	return
+}
+
+// GetStrength returns a value that represents
 // the strength of a password, the greater the
 // number the greater the strength of the password
-func CheckStrength(password string) (strength float64) {
+func (p *Password) GetStrength(password string) (strength float64) {
 
 	sumRuneOccurrences := make(map[rune]float64)
 
@@ -88,13 +114,13 @@ func CheckStrength(password string) (strength float64) {
 		charValue := 1.0
 
 		// get rune value by frequency in language
-		if val, ok := enUS[c]; ok {
+		if val, ok := p.WeightOfCharacters[c]; ok {
 			charValue = val
 		}
 
 		// penalty for char sequencing
 		if i > 0 {
-			if strings.Contains(enUSSequence, password[0:i]) {
+			if strings.Contains(p.CharacterSequence, password[0:i]) {
 				charValue = charValue - (charValue / 4.0)
 			}
 		}
