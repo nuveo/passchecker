@@ -1,14 +1,13 @@
 package gopsc
 
 import (
-	"fmt"
 	"testing"
 )
 
 func TestCheckStrength(t *testing.T) {
 	p := New()
-	val := p.GetStrength("aaaaaa")
-	fmt.Printf("%.9f\n", val)
-	val = p.GetStrength("aaaaab")
-	fmt.Printf("%.9f\n", val)
+	val, _ := p.GetStrength("test long pass")
+	if val != 10.932313333 {
+		t.Errorf("Expected %v but returned %v", 10.932313333, val)
+	}
 }

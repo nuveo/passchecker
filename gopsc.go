@@ -73,12 +73,17 @@ var (
 
 	// EnUSSequence order of characters
 	EnUSSequence = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+
+	EnUSStrengthRangeStart = 6.0
+	EnUSStrengthRangeEnd   = 10.0
 )
 
 // Password define parameters to determine password strength
 type Password struct {
 	WeightOfCharacters map[rune]float64
 	CharacterSequence  string
+	StrengthRangeStart float64
+	StrengthRangeEnd   float64
 }
 
 // New instanciate a password object
@@ -86,6 +91,8 @@ func New() (r *Password) {
 	r = &Password{
 		WeightOfCharacters: EnUS,
 		CharacterSequence:  EnUSSequence,
+		StrengthRangeStart: EnUSStrengthRangeStart,
+		StrengthRangeEnd:   EnUSStrengthRangeEnd,
 	}
 	return
 }
@@ -102,14 +109,12 @@ func NewWithParameters(weightOfCharacters map[rune]float64, characterSequence st
 // GetStrength returns a value that represents
 // the strength of a password, the greater the
 // number the greater the strength of the password
-func (p *Password) GetStrength(password string) (strength float64) {
-
+func (p *Password) GetStrength(password string) (strength float64, strengthPercent float64) {
 	sumRuneOccurrences := make(map[rune]float64)
 
-	for i, c := range password {
-		//runeValue, width := utf8.DecodeRuneInString(c)
-		//plen += width
+	// ((127!)*8)/(126!) (tentar usar fatorial com memoria)
 
+	for i, c := range password {
 		// default value
 		charValue := 1.0
 
@@ -130,6 +135,14 @@ func (p *Password) GetStrength(password string) (strength float64) {
 
 		// compute rune value
 		strength += charValue / sumRuneOccurrences[c]
+	}
+
+	if strength > p.StrengthRangeStart &&
+		strength < p.StrengthRangeEnd {
+		strengthPercent = (strength - p.StrengthRangeStart) * (100.0) / (p.StrengthRangeEnd - p.StrengthRangeStart)
+	}
+	if strength > p.StrengthRangeEnd {
+		strengthPercent = 100.0
 	}
 
 	return

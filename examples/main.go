@@ -20,16 +20,16 @@ func main() {
 	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {
 		passwd := scanner.Text()
-		v := p.GetStrength(passwd)
+		v, _ := p.GetStrength(passwd)
 		if v > r {
 			r = v
 		}
-		if v > 10.0 {
-			fmt.Println(p.GetStrength(passwd), passwd)
+		if v > 6.0 && v < 8.0 {
+			fmt.Printf("%02.5f\t%v\n", v, passwd)
 		}
 	}
 
-	fmt.Println("Max:", r)
+	//fmt.Println("Max:", r)
 	err = scanner.Err()
 	if err != nil {
 		panic(err)
