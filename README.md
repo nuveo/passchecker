@@ -1,2 +1,2 @@
-# gopsc
+# passchecker
 Simple password strength checker

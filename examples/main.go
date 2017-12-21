@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/crgimenes/gopsc"
+	"github.com/crgimenes/passchecker"
 )
 
 func main() {
@@ -15,7 +15,7 @@ func main() {
 	}
 	defer f.Close()
 
-	p := gopsc.New()
+	p := passchecker.New()
 	r := 0.0
 	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {

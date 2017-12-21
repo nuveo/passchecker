@@ -1,4 +1,4 @@
-package gopsc
+package passchecker
 
 import (
 	"strings"
