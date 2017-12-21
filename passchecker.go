@@ -112,8 +112,6 @@ func NewWithParameters(weightOfCharacters map[rune]float64, characterSequence st
 func (p *Password) GetStrength(password string) (strength float64, strengthPercent float64) {
 	sumRuneOccurrences := make(map[rune]float64)
 
-	// ((127!)*8)/(126!) (tentar usar fatorial com memoria)
-
 	for i, c := range password {
 		// default value
 		charValue := 1.0
