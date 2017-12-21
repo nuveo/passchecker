@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/crgimenes/passchecker"
+	"github.com/nuveo/passchecker"
 )
 
 func main() {
