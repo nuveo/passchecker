@@ -1,5 +1,11 @@
 # Run js
 
+## Install by NPM
+
+```
+npm install --save passchecker
+```
+
 ## Build
 
 ```
