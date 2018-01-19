@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	js.Global.Set("passchecker", map[string]interface{}{
+	js.Module.Get("exports").Set("passchecker", map[string]interface{}{
 		"New": New,
 	})
 }
