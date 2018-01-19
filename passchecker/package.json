@@ -1,0 +1,19 @@
+{
+  "name": "passchecker",
+  "version": "1.0.0",
+  "description": "Simple password strength checker.",
+  "main": "passchecker.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nuveo/passchecker.git"
+  },
+  "author": "Nuveo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nuveo/passchecker/issues"
+  },
+  "homepage": "https://github.com/nuveo/passchecker#readme"
+}
