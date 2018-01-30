@@ -7,9 +7,3 @@
 ### Please, write a brief description of your Pull Requests:
 
 [...]
-
-### Please, link pivotal task (if exist one) here:
-
-[...]
-
-_remember to use either "Finishes #pivodtal_ID" or "Delivers #Pivotal_ID" if those apply_
